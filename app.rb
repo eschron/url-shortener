@@ -37,27 +37,31 @@ end
 
 # redirect to target url (detecting mobile, tablet, desktop), update redirects count.
 get '/:id' do
-  browser = Browser.new request.user_agent, accept_language: request.env["HTTP_ACCEPT_LANGUAGE"]
-  url = Url.where(shortened_url: params[:id]).first
+  if params[:id] != "favicon.ico"
+    browser = Browser.new request.user_agent, accept_language: request.env["HTTP_ACCEPT_LANGUAGE"]
+    url = Url.where(shortened_url: params[:id]).first
 
-  if url
-    count = url["redirect_count"]
-    url.update(redirect_count: count+1)
-    response = HTTParty.get("http://localhost:4567/api/v1/urls/#{params[:id]}")
-    orig = JSON.parse(response.body)["original_url"]
+    if url
+      count = url["redirect_count"]
+      url.update(redirect_count: count+1)
+      response = HTTParty.get("http://localhost:4567/api/v1/urls/#{params[:id]}")
+      orig = JSON.parse(response.body)["original_url"]
 
-    if browser.device.tablet?
-      tablet = orig.gsub(/www\./,"t.")
-      redirect tablet
-    elsif browser.device.mobile?
-      mobile = orig.gsub(/www\./,"m.")
-      redirect mobile
+      if browser.device.tablet?
+        tablet = orig.gsub(/www\./,"t.")
+        redirect tablet
+      elsif browser.device.mobile?
+        mobile = orig.gsub(/www\./,"m.")
+        redirect mobile
+      else
+        redirect orig
+      end
+
     else
-      redirect orig
+      flash[:error] = "Not an existing shortened url. Not valid"
+      redirect '/'
     end
-
   else
-    flash[:error] = "Not an existing shortened url. Not valid"
     redirect '/'
   end
 end
@@ -84,7 +88,7 @@ post '/api/v1/urls' do
       url = Url.where(original_url: params['original_url']).first
       Url.all.where(original_url: params['original_url']).to_json
       url = "http://localhost:4567/#{url.shortened_url}"
-      flash[:message] = "Here is your shortened url:"
+      flash[:message] = "This url already exists, here is the shortened url:"
       flash[:url] = url
       redirect '/'
     else

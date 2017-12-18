@@ -29,6 +29,7 @@ a:hover {
 }
 
 #original_url {
+  text-align: center;
   width: 30%;
   min-width: 200px;
   height: 23px;

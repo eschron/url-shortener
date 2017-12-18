@@ -1,8 +1,8 @@
 <div class='centered'>
   <h1><%= @title %></h1>
   <form id='url-form' action="/api/v1/urls" method="post">
-    <label for="original_url">Url to be shortened:</label>
-    <input type="text" id="original_url" name="original_url" autofocus="on">
+    <!-- <label for="original_url">Url to be shortened:</label> -->
+    <input type="text" id="original_url" name="original_url" autofocus="on" placeholder="Input URL">
     <input type="submit" value="Shorten url">
   </form>
   <h3>All existing shortened Urls(<%= @res.length%>)</h3>
