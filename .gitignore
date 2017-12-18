@@ -1,3 +1,4 @@
 .bundle
 .DS_store
 Gemfile.lock
+.sass-cache
