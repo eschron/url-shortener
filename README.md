@@ -11,7 +11,7 @@
 * Navigate to the project's root directory with `cd url-shortener`
 * Run `bundle install`
 * Run `rake db:create && rake db:setup`
-* In a separate terminal, run `ruby app.rb`
+* Run `ruby app.rb`
 * Visit http://localhost:4567/ in your browser.
 
 ## To test
