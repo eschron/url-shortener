@@ -14,6 +14,6 @@ feature "user submits a url" do
     fill_in('original_url', with: 'www.google.com')
     click_button "Shorten url"
 
-    expect(page).to have_content("Not a valid url. Please enter a url in the format: http://www.example.com/sodifhl;msd")
+    expect(page).to have_content("Not a valid url. Please enter a url in the format: http://www.example.com/path")
   end
 end
