@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'activerecord', '~> 4.1'
+gem 'activerecord'
 gem 'pg'
 gem 'rake'
-gem 'sinatra', '~> 1.4'
-gem 'sinatra-activerecord', '~> 2.0'
+gem 'sinatra'
+gem 'sinatra-activerecord'
 gem 'sinatra-contrib', require: false
 gem 'sinatra-flash'
 gem 'httparty'
