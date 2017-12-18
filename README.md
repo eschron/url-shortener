@@ -7,7 +7,7 @@
 
 ## To run locally
 * Install Ruby 2.3.3
-* In a terminal, run git clone `https://github.com/eschron/url-shortener.git`
+* In a terminal, run `git clone https://github.com/eschron/url-shortener.git`
 * Navigate to the project's root directory with `cd url-shortener`
 * Run `bundle install`
 * Run `rake db:create && rake db:setup`
