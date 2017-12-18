@@ -2,7 +2,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: joor_assessment_development
+  database: url_shortener_development
   pool: 5
   username:
   password:
@@ -11,7 +11,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: joor_assessment_test
+  database: url_shortener_test
   pool: 5
   username:
   password:
@@ -20,7 +20,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: joor_assessment_production
+  database: url_shortener_production
   pool: 5
   username:
   password:
