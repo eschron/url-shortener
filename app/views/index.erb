@@ -1,1 +1,21 @@
-<h1><%= @title %></h1>
+<div class='centered'>
+  <h1><%= @title %></h1>
+  <form id='url-form' action="/api/v1/urls" method="post">
+    <label for="original_url">Url to be shortened:</label>
+    <input type="text" id="original_url" name="original_url" autofocus="on">
+    <input type="submit" value="Shorten url">
+  </form>
+  <h3>All existing shortened Urls(<%= @res.length%>)</h3>
+  <% @res.each do |entry| %>
+    <div id='url-history-item'>
+      <% minutes_diff = ((@timenow - DateTime.parse(entry["created_at"]))*24*60).to_i%>
+      <% minutes = minutes_diff % 60 %>
+      <% hours = (minutes_diff / 60) % 24 %>
+      <% days = ((minutes_diff / 60) / 24)  % 365%>
+      <p><%= days%> days, <%= hours%> hours, <%= minutes%> minutes since creation.</p>
+      <p>Shortened Url: <a href="<%= "http://localhost:4567/" + entry["shortened_url"] %>"><%= "http://localhost:4567/" + entry["shortened_url"] %></a></p>
+      <p>Target Url: <%= entry["original_url"]%></p>
+      <p>Redirect count: <%= entry["redirect_count"]%></p>
+    </div>
+  <% end %>
+</div>

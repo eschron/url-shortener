@@ -5,11 +5,15 @@ gem "pg"
 gem "rake"
 gem "sinatra", "~> 1.4"
 gem "sinatra-activerecord", "~> 2.0"
-gem "sinatra-contrib"
+gem "sinatra-contrib", require: false
 gem "sinatra-flash"
+gem 'httparty'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'browser'
 
 group :test, :development do
   gem "pry"
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 group :test do
